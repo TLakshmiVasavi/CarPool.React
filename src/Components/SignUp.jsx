@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import LoginBackground from './LoginBackground';
-import LoginForm from './LoginForm';
-import Logo from './Logo';
+import SignUpForm from './SignUpForm';
 
-class LoginPage extends Component {
+class SignUp extends Component {
 
   render() {
     // NOTE: I use data-attributes for easier E2E testing
@@ -13,10 +11,10 @@ class LoginPage extends Component {
     return (
       <React.Fragment>
         <LoginBackground/>
-        <LoginForm/>
+        <SignUpForm></SignUpForm>
       </React.Fragment>
     );
   }
 }
 
-export default LoginPage;
+export default SignUp;

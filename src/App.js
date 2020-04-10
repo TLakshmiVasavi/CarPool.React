@@ -1,11 +1,13 @@
 import React from 'react';
-import './App.css';
 import LoginPage from './Components/Login';
+import SignUp from './Components/SignUp';
+import Home from './Components/Home';
+import OfferRide from './Components/SearchRide';
 
 function App() {
   return (
     <div className="App">
-      <LoginPage></LoginPage>
+      <OfferRide></OfferRide>
     </div>
   );
 }

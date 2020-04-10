@@ -1,0 +1,29 @@
+input{
+    height: 30px;
+    border-radius: 5px;
+}
+
+label {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    transition: all 0.1s linear;
+    padding: 0 5px;
+    background: white;
+    z-index: 3;
+}
+label.field-active {
+    font-size: small;
+    left: 5px;
+    top: -10px;
+ } 
+   .field-group{
+           position: relative;
+           margin:10px;
+   }
+   .btn {
+    color: white;
+    font-weight: bold;
+    border-radius: 1.5em;
+    background-color:rgb(255, 172, 25) ;
+  }

@@ -1,0 +1,35 @@
+
+.heading {
+    display: inline-block;
+    position: absolute;
+    top: 15%;
+    left: 4%;
+    color: rgb(51, 64, 83);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 500%;
+}
+
+.miles {
+    display:inline;
+    color: rgb(255, 172, 25);
+}
+
+.money {
+    display:inline;
+    color: rgb(147, 25, 255);
+}
+
+.leftHalf {
+    background: url(../images/img1.png) no-repeat left bottom;
+    width: 70%;
+    position: absolute;
+    background-size:100% 50%;
+    height: 100%;
+ }
+
+.normal {
+    letter-spacing: 3px;
+    font-style: normal;
+    font-size: medium;
+}

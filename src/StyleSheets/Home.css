@@ -1,0 +1,13 @@
+ .Home {
+    background: url(../images/img3.png) no-repeat bottom;
+    position: absolute;
+    background-size:100% 50%;
+    height: 100vh;
+ } 
+
+ .arrange{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: row;
+ }
