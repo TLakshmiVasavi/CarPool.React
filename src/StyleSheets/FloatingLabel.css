@@ -14,6 +14,7 @@ label {
 }
 label.field-active {
     font-size: small;
+    color:rgb(166, 161, 162);
     left: 5px;
     top: -10px;
  } 

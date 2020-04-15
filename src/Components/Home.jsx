@@ -1,7 +1,5 @@
 import React from 'react';
 import Logo from './Logo';
-import Box from './Box';
-import '../StyleSheets/Home.css';
 
 class Home extends React.Component
 {
@@ -10,9 +8,9 @@ class Home extends React.Component
         return(
             <div className="Home">
                 <Logo/>
-                <div className="arrange">    
-                <Box>Book a Ride</Box>
-                <Box>Offer a Ride</Box> 
+                <div className="center">    
+                <div className="box">Book a Ride</div>
+                <div className="box">Offer a Ride</div>
                 </div>
             </div>
         );

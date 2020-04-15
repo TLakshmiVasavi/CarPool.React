@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../StyleSheets/Login.css';
 import FloatingLabelInput from './FloatingLabelInput';
-import UnderLine from './UnderLinedText';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -16,7 +14,7 @@ class LoginForm extends Component {
     this.handlePassChange = this.handlePassChange.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-	this.dismissError = this.dismissError.bind(this);
+	  this.dismissError = this.dismissError.bind(this);
   }
 
   dismissError() {
@@ -68,7 +66,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="Login rightHalf">
+      <div className="rightHalf">
         <form onSubmit={this.handleSubmit}>
           {
             this.state.error &&
@@ -77,12 +75,14 @@ class LoginForm extends Component {
               {this.state.error}
             </h3>
           }
-		  <h1 className="form-heading"><UnderLine>Log In</UnderLine></h1>
+		  <h1 className="form-heading underline">Log In</h1>
         <FloatingLabelInput label="id" data="" handleChange={this.handleUserChange}/>
 		  <FloatingLabelInput label="password" data="" handleChange={this.handlePassChange}/>
 		  <input type="submit" className="btn" value="Log In" data-test="submit" />
-		  <div className="form-group white">Not a member yet? <a asp-action="SignUp"><UnderLine> SIGN UP </UnderLine></a></div>
+		  <div className="form-group white">Not a member yet? <a asp-action="SignUp" className="underline"> SIGN UP</a></div>
+      
         </form>
+        
       </div>
     );
   }

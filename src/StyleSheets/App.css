@@ -1,0 +1,86 @@
+.rounded-btn {
+  color: white;
+  font-weight: bold;
+  border-radius: 1.5em;
+  border-color: darkviolet;
+}
+
+.box{
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: darkviolet;
+  color: white;
+  border-radius: 10px;
+  width:250px;
+  height:150px;
+  margin: 10px;
+}
+
+.dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: grey;
+  margin: 3px;
+}
+
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.shadowBox {
+  margin:10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.underline {
+  border-bottom-width: 1;
+  border-bottom-style: solid;
+}
+
+.Home {
+  background: url(../images/img3.png) no-repeat bottom;
+  position: absolute;
+  background-size:100% 50%;
+  height: 100vh;
+} 
+
+.round-btn{
+  border-color: #9f9f9f;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.btn:hover{
+background-color: darkviolet;
+color: white;
+border-color:darkviolet ;
+outline: none;
+}
+
+.btn:focus{
+  background-color: darkviolet;
+color: white;
+border-color:darkviolet ;
+outline: none;
+}
+
+.btn{
+  color: black;
+    background-color: white;
+    border-style: solid;
+    margin: 5px;
+}
+
+.darkviolet{
+  color: darkviolet;
+}

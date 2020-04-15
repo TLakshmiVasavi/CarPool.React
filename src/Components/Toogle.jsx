@@ -12,10 +12,14 @@ class ToggleSwitch extends Component {
       }
   render() {
     return (
-        <label className="switch">
-                            <input type="checkbox" className="checkbox" onChange={ this.handleChecked }/>
-                            <span className="slider round"></span>
-                        </label>
+      <label className="switch">
+        <input
+          type="checkbox"
+          className="checkbox"
+          onChange={this.handleChecked}
+        />
+        <span className="slider round"></span>
+      </label>
     );
   }
 }

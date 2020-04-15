@@ -6,11 +6,18 @@
 input{
     display: block;
     border:unset;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(166, 161, 162);
     border-radius: unset;
 }
 input:focus{
     border:unset;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid blue;
     outline: none;
+}
+small{
+    color:rgb(166, 161, 162);
+    font-weight: bold;
+}
+a{
+    color:blue;
 }

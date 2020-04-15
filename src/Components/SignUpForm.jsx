@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../StyleSheets/Login.css';
 import FloatingLabelInput from './FloatingLabelInput';
-import UnderLine from './UnderLinedText';
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -63,7 +61,7 @@ class SignUpForm extends Component {
 
   render() {
     return (
-      <div className="Login rightHalf">
+      <div className="rightHalf">
         <form onSubmit={this.handleSubmit}>
           {
             this.state.error &&
@@ -72,7 +70,7 @@ class SignUpForm extends Component {
               {this.state.error}
             </h3>
           }
-		  <h1 className="form-heading"><UnderLine>Sign Up</UnderLine></h1>
+		  <h2>SignUp</h2>
         <FloatingLabelInput label="id" data="" handleChange={this.handleChange}/>
         <FloatingLabelInput label="mail" data="" handleChange={this.handleChange} />
 		  <FloatingLabelInput label="password" data="" handleChange={this.handleChange}/>
@@ -97,8 +95,8 @@ class SignUpForm extends Component {
           <FloatingLabelInput label="Number" data="" handleChange={this.handleChange} />
           <FloatingLabelInput label="Model" data="" handleChange={this.handleChange} />
           <FloatingLabelInput label="Capacity" data="" handleChange={this.handleChange} />
-		  <input type="submit" className="btn" value="Sign Up" data-test="submit" />
-		  <div className="form-group white">Already a Member? <a asp-action="SignUp"><UnderLine> Log In </UnderLine></a></div>
+          <input type="submit" className="btn" value="Log In" data-test="submit" />
+		  <div className="form-group white">Not a member yet? <a asp-action="SignUp" className="underline"> SIGN UP</a></div>
         </form>
       </div>
     );
