@@ -7,7 +7,6 @@ class RideDetails extends React.Component{
 render()
 {
     return(
-        <Col md={4}>
             <div className="shadowBox">
                 <Row>
                     <Col md={8}>
@@ -78,7 +77,6 @@ render()
                            </Col>
                        </Row>
             </div>
-        </Col>
     );
 }
 }

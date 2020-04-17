@@ -48,7 +48,10 @@ class OfferRide extends React.Component {
           <div id="dynamicInput">
         {this.state.inputs.map(input => <FloatingLabelInput label={input} />)}
     </div>
-    <TextField
+    <FloatingLabelInput label="addstop">
+    <Add  onClick={ () => this.appendInput() }/>
+    </FloatingLabelInput>
+    <TextField className="addbtn"
     id="sta"
     defaultValue="stop 2"
     margin="normal"

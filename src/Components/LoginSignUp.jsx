@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import '../StyleSheets/LoginSignUp.css';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 class LoginSignUp extends Component {
 
@@ -9,10 +10,14 @@ class LoginSignUp extends Component {
     return (
       <React.Fragment>
         <div className="leftHalf">
-        <img src={require('../images/logo.png')} className="Logo"></img>
         <div className="heading">TURN<div className="miles"> MILES</div><br />INTO <div className="money">MONEY</div><div className="normal">RIDES ON TAP</div></div>
         </div>
-        <SignUpForm/>
+        <Router>
+        <Switch>
+          <Route exact path="/SignUp" component={SignUpForm}/>
+          <Route exact path="/(Login|)/" component={LoginForm}/>
+          </Switch>
+      </Router>
       </React.Fragment>
     );
   }

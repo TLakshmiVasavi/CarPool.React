@@ -20,13 +20,7 @@ form{
     color:white;
 }
 
-a{
-    color: white;
-    font-weight: bold;
-}
-
-a:hover {
-    color: white;
+a,a:hover {
     font-weight: bold;
     text-decoration: none;
 }

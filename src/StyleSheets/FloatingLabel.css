@@ -22,9 +22,4 @@ label.field-active {
            position: relative;
            margin:10px;
    }
-   .btn {
-    color: white;
-    font-weight: bold;
-    border-radius: 1.5em;
-    background-color:rgb(255, 172, 25) ;
-  }
+   

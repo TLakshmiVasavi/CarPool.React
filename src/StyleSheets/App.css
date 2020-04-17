@@ -27,6 +27,29 @@
   margin: 3px;
 }
 
+input:disabled{
+  background-color: white;
+    border: white;
+    font-size: medium;
+    color:black;
+}
+
+.Profile{
+  flex-direction: column !important;
+  text-align:right;
+}
+
+.Profile>div>button{
+  margin:2px;
+}
+
+select:disabled {
+  -webkit-appearance: none;
+  border:unset;
+  font-size: medium;
+  color:black;
+}
+
 .center{
   display: flex;
   align-items: center;
@@ -54,10 +77,13 @@
 } 
 
 .round-btn{
-  border-color: #9f9f9f;
+  border:solid #9f9f9f !important;
+    border-radius: 50%;
+  margin: 5px;
+  color: black !important;
+    background-color: white;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
 }
 
 .btn:hover{
@@ -75,12 +101,56 @@ outline: none;
 }
 
 .btn{
-  color: black;
-    background-color: white;
-    border-style: solid;
+  color: white;
+  font-weight: bold;
+  border-radius: 1.5em;
+  border:unset;
     margin: 5px;
 }
 
+.rectangle {
+  display: inline-block;
+  margin: 22px;
+  border-radius: 5px 5px 5px 5px;
+  clear: both;
+  padding: 10px;
+  color: white;
+}
+
+p{
+  margin: 1px;
+}
+
 .darkviolet{
-  color: darkviolet;
+  color: darkviolet !important;
+}
+
+.bg-darkorange{
+  background-color: #ffac19 !important;
+}
+
+.bg-darkviolet{
+  background-color: darkviolet !important;
+}
+
+.darkorange{
+  color: #ffac19 !important;
+}
+
+.white{
+  color: white;
+}
+
+.addbtn{
+  width: 170px;
+    margin-left: 10px !important;
+}
+
+.Logo{
+  background: url(../images/logo.png) no-repeat left bottom;
+}
+.App {
+    height: 100vh;
+  background:url(../images/logo.png) 20px 20px fixed;
+  background-repeat: no-repeat;
 }
