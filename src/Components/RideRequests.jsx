@@ -7,7 +7,7 @@ class RideRequests extends React.Component
     {
         axios.get('https://localhost:5001/api/RideApi/RideRequests?rideId=2002')
         .then(res=>{
-            console.log(res);
+            // console.log(res);
             this.setState({rideRequests:res.data});
         });
     }

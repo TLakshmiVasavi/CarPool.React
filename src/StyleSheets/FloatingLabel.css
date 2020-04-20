@@ -1,9 +1,9 @@
 input{
     height: 30px;
     border-radius: 5px;
-}
+} 
 
-label {
+ label {
     position: absolute;
     left: 10px;
     top: 10px;
@@ -12,7 +12,7 @@ label {
     background: white;
     z-index: 3;
 }
-label.field-active {
+label:focus {
     font-size: small;
     color:rgb(166, 161, 162);
     left: 5px;

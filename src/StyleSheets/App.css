@@ -1,8 +1,8 @@
-.rounded-btn {
-  color: white;
+.rounded-btn { 
   font-weight: bold;
   border-radius: 1.5em;
-  border-color: darkviolet;
+  /* border-color: darkviolet;
+  color: white; */
 }
 
 .box{
@@ -10,7 +10,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: darkviolet;
   color: white;
   border-radius: 10px;
   width:250px;
@@ -76,27 +75,24 @@ select:disabled {
   height: 100vh;
 } 
 
-.round-btn{
-  border:solid #9f9f9f !important;
+.number{
+  border:solid #9f9f9f;
     border-radius: 50%;
   margin: 5px;
-  color: black !important;
+  color: black ;
     background-color: white;
     width: 40px;
     height: 40px;
 }
 
-.btn:hover{
-background-color: darkviolet;
-color: white;
-border-color:darkviolet ;
-outline: none;
-}
-
-.btn:focus{
+.number:hover,:focus{
+  outline:none;
   background-color: darkviolet;
 color: white;
 border-color:darkviolet ;
+}
+
+.btn:hover,:focus{
 outline: none;
 }
 
@@ -121,26 +117,6 @@ p{
   margin: 1px;
 }
 
-.darkviolet{
-  color: darkviolet !important;
-}
-
-.bg-darkorange{
-  background-color: #ffac19 !important;
-}
-
-.bg-darkviolet{
-  background-color: darkviolet !important;
-}
-
-.darkorange{
-  color: #ffac19 !important;
-}
-
-.white{
-  color: white;
-}
-
 .addbtn{
   width: 170px;
     margin-left: 10px !important;
@@ -149,8 +125,33 @@ p{
 .Logo{
   background: url(../images/logo.png) no-repeat left bottom;
 }
+
 .App {
     height: 100vh;
   background:url(../images/logo.png) 20px 20px fixed;
   background-repeat: no-repeat;
+}
+
+.errorMessage{
+  color: red;
+}
+
+.OfferRide{
+  margin-left: 8%;
+}
+
+.submit{
+  padding: 10px;
+    color: white;
+    font-weight: bold;
+    border-radius: 1.5em;
+    border: unset;
+    margin: 5px;
+}
+
+.time{
+  border:solid;
+  border-color: darkviolet;
+  font-weight: bold;
+  border-radius: 1.5em;
 }
