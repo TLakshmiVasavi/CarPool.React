@@ -424,3 +424,155 @@
 // }
 
 // export default RideDetails;
+
+
+//Input Context consumer
+// import React from "react";
+// import Context from "./Context";
+
+// const Input = () => (
+//   <Context.Consumer>
+//     {context => (
+//       <div>
+//         <div>the context in Provider is : {context.name}</div>
+//         <div>
+//           <input
+//             type="text"
+//             value={context.name}
+//             onChange={e => context.updateName(e.target.value)}
+//           />
+//         </div>
+//       </div>
+//     )}
+//   </Context.Consumer>
+// );
+
+// export default Input;
+
+
+
+
+// import Context from "./Context";
+// import React from "react";
+
+
+// class Input extends Component {
+
+//     constructor(props) {
+//       super(props);
+//       this.state = {        
+//         ReturnMessage:""
+//       };
+//     }
+
+//     ClearData(e){
+//         const val = e.target.value;
+//         this.setState({
+//            ReturnMessage:val
+//         });
+//         this.props.context.updateValue('ReturnMessage', val);
+//     }
+
+//     render() {
+//         return (
+//            <React.Fragment>
+//              <p>{this.props.context.state.Message}</p>}
+//              <input onChange={this.ClearData} />
+//            </React.Fragment>
+//        )
+//     }
+// }
+
+// const withContext = (Component) => {
+//    return (props) => {
+//        <Context.Consumer>    
+//             {(context) => {
+//                return <Component {...props} context={context} />
+//             }}
+//        </Context.Consumer>
+//    }
+// }
+
+// export default withContext(Input);
+
+
+
+
+
+
+
+//provider not working
+// import React from "react";
+// import Context from "./Context";
+
+// class Provider extends React.Component {
+//   constructor()
+//   {
+//     super();
+//     this.state={
+//       signed:false,
+//       user:{
+//         id:null,
+//         pwd:null
+//       }
+//     };
+// this.toogleAuth=this.toogleAuth.bind(this);
+// this.setUser=this.setUser.bind(this);
+//   }
+// toogleAuth()
+// {
+//   this.setState({signed:!this.state.signed});
+// }
+
+// setUser(user)
+// {
+//   this.setState({user});
+// }
+
+//   render() {
+//     return (
+//       <Context.Provider
+//         value={{
+//           user:this.state.user,
+//           toogleAuth:this.state.toogleAuth,
+//           setUser:this.state.setUser,
+//         }}
+//       >
+//         {this.props.children}
+//       </Context.Provider>
+//     );
+//   }
+// }
+
+// export default Provider;
+
+// import React, { Component } from 'react'
+// import UserContext from './UserContext'
+
+// export default class HomePage extends Component {
+//   static contextType = UserContext
+//     componentDidMount()
+//     {
+//         console.log(this.context);
+//     }
+  
+
+//   render() {
+//     const { user, setUser } = this.context
+
+//     return (
+//       <div>
+//         <button
+//           onClick={() => {
+//             const newUser = { name: 'Joe', loggedIn: true }
+
+//             setUser(newUser)
+//           }}
+//         >
+//           Update User
+//         </button>
+//         <p>{`Current User: ${user.name}`}</p>
+//       </div>
+//     )
+//   }
+// }

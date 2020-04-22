@@ -150,8 +150,26 @@ p{
 }
 
 .time{
+  margin:5px;
   border:solid;
   border-color: darkviolet;
   font-weight: bold;
   border-radius: 1.5em;
+  background-color: white;
+}
+
+.time:focus{
+  margin:5px;
+  color: white;
+  font-weight: bold;
+  border-radius: 1.5em;
+  background-color: darkviolet;
+}
+
+.selected{
+  margin:5px;
+  color: white;
+  font-weight: bold;
+  border-radius: 1.5em;
+  background-color: darkviolet;
 }

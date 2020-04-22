@@ -84,3 +84,22 @@ export default function MenuListComposition() {
     </div>
   );
 }
+
+// const withContext = (Component) => {
+//   return (props) => {
+//     return (
+//       <Context.Consumer>
+//         {({ name, user, updateName }) => {
+//           return (
+//             <Component
+//               {...props}
+//               name={name}
+//               user={user}
+//               updateName={updateName}
+//             />
+//           );
+//         }}
+//       </Context.Consumer>
+//     );
+//   };
+// };

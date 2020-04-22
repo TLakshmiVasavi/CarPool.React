@@ -9,9 +9,10 @@ class MyRides extends React.Component {
     Bookings: [],
   };
   componentDidMount() {
+
     axios
       .get(
-        "https://localhost:5001/api/RideApi/GetOfferedRides?userId=tlakshmivasavi005@gmail.com"
+        "https://localhost:5001/api/RideApi/GetOfferedRides?userId="+this.context.user.mail
       )
       .then((res) => {
         // console.log(res);
@@ -19,7 +20,7 @@ class MyRides extends React.Component {
       });
     axios
       .get(
-        "https://localhost:5001/api/RideApi/GetBookings?userId=tlakshmivasavi005@gmail.com"
+        "https://localhost:5001/api/RideApi/GetBookings?userId="+this.context.user.mail
       )
       .then((res) => {
         // console.log(res);

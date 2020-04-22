@@ -12,7 +12,16 @@ const times = ["5am-9am", "9am-12pm", "12pm-3pm", "3pm-6pm", "6pm-9pm"];
 class SearchRide extends React.Component {
   constructor() {
     super();
-    this.state = { isChecked: false, inputs: [] };
+    this.state = { isChecked: false,
+      selectedDate: new Date(),
+      from: "",
+      to: "",
+      time: "",
+      formErrors: {
+        from: "",
+        to: "",
+        time: "",
+      }, };
     this.handleChecked = this.handleChecked.bind(this); // set this, because you need get methods from CheckBox
   }
   handleChecked() {
@@ -82,6 +91,8 @@ class SearchRide extends React.Component {
                     onChange={this.dateHandler}
                     minDate={new Date()}
                   />
+                  </Col>
+                    <Col md={12}>
                   <small>Time</small>
                   <div
                     data-toggle="button"

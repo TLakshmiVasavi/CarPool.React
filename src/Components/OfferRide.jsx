@@ -195,6 +195,8 @@ class OfferRide extends React.Component {
                       onChange={this.dateHandler}
                       minDate={new Date()}
                     />
+                    </Col>
+                    <Col md={12}>
                     <small>Time</small>
                     <div
                       data-toggle="button"

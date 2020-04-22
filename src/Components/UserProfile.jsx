@@ -1,24 +1,31 @@
 import React from 'react';
 import {Row,Col,Container} from 'react-grid-system';
 import MenuListComposition from './MenuList';
+import Context from "./UserContext/Context";
 
 class UserProfile extends React.Component
 {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state={
             disable:true,
-            name:'vasavi',
-      mail:'tlakshmivasavi005@gmail.com',
-      password: 'V@123456',
-      age:'23',
-      number:'9032279899',
-      gender:'Female',
+            user:{
+                Name:'',
+Mail:'',
+Number:'',
+Age:'',
+Gender:'',
+Photo:''
         }
+    }
         this.enableEdit=this.enableEdit.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
         this.disableEdit=this.disableEdit.bind(this);
     }
+
+    componentDidMount() {
+            this.setState({ user: this.props.user });
+      }
 
     enableEdit(e){
         this.setState({disable:false})
@@ -76,8 +83,8 @@ class UserProfile extends React.Component
                     </Col>
                     <Col md={6}>
                     <select value={this.state.gender}   disabled={this.state.disable}>
-  <option value="grapefruit">Female</option>
-  <option value="lime">Male</option>
+  <option value="Female">Female</option>
+  <option value="Male">Male</option>
 </select>
                     </Col>
                 </Row>
@@ -92,4 +99,22 @@ class UserProfile extends React.Component
                 );
     }
 }
-export default UserProfile;
+const withContext = (Component) => {
+    return (props) => {
+      return (
+        <Context.Consumer>
+          {({ name, user, updateName }) => {
+            return (
+              <Component
+                {...props}
+                name={name}
+                user={user}
+                updateName={updateName}
+              />
+            );
+          }}
+        </Context.Consumer>
+      );
+    };
+  };
+export default withContext(UserProfile);
