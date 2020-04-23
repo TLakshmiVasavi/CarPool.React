@@ -39,22 +39,25 @@
 
 // export default App;
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { Router,Route } from 'react-router-dom';
 
 import history from './Components/Routing/history';
 import Routes from './Components/Routing/Routes';
-
-import Provider from "./Components/UserContext/Provider";
+import MenuListComposition from './Components/MenuList';
+import './StyleSheets/App.css';
+import {UserProvider} from "./Components/UserContext";
 
 
 function App() {
   return (
+    <div className="App">
+      <UserProvider>
     <Router history={history}>
-      <Routes />
+    <MenuListComposition/>
+    <Routes />
     </Router>
-  //   <Provider>
-  //   <Input />
-  // </Provider>
+    </UserProvider>
+    </div>
   );
 }
 

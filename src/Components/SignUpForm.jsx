@@ -3,9 +3,22 @@ import axios from "axios";
 import { TextField,OutlinedInput,InputLabel,InputAdornment,FormControl} from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
-import { withStyles } from "@material-ui/styles";
-import PropTypes from "prop-types";
-import Context from "./UserContext/Context";
+import UserContext from "./UserContext";
+
+const formValid = ({ formErrors, ...rest }) => {
+  let valid = true;
+
+  Object.values(formErrors).forEach((val) => {
+    val.length > 0 && (valid = false);
+  });
+
+  // validate the form was filled out
+  Object.values(rest).forEach((val) => {
+    val === null && (valid = false);
+  });
+
+  return valid;
+};
 
 const Gender = [
   {
@@ -53,6 +66,7 @@ const phoneRegEx = RegExp(/^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/);
 const numberRegEx=RegExp(/^([0-9])*$/);
 
 class SignUpForm extends Component {
+  static contextType = UserContext;
 
   constructor(props) {
     super(props);
@@ -365,8 +379,10 @@ class SignUpForm extends Component {
           />
           <div className="form-group white">
             Not a member yet?
-            <a asp-action="SignUp" className="underline white">
-              SIGN UP
+            <a className="underline white" onClick={() => {
+        this.props.history.push("/Login");
+   }}>>
+              Login
             </a>
           </div>
         </form>

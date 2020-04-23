@@ -1,24 +1,19 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import UserContext from "../UserContext";
 
 class RouteWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      signed: false,
-    };
-  }
-
+  static contextType = UserContext;
   render() {
-    //alert("changing");
+    let {signed}=this.context;
     const { isPrivate } = this.props;
-    if (isPrivate && !this.state.signed) {
+    if (isPrivate && !signed) {
       return <Redirect to="/" />;
     }
-    if (!isPrivate && this.state.signed) {
+    if (!isPrivate && signed) {
       return <Redirect to="/Home" />;
     }
-    return <Route component={this.props.component} />;
+    return <Route exact path={this.props.path} component={this.props.component} isPrivate={isPrivate}/>
   }
 }
 

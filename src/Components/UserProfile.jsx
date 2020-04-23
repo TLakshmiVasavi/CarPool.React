@@ -1,7 +1,6 @@
 import React from 'react';
 import {Row,Col,Container} from 'react-grid-system';
 import MenuListComposition from './MenuList';
-import Context from "./UserContext/Context";
 
 class UserProfile extends React.Component
 {
@@ -24,7 +23,7 @@ Photo:''
     }
 
     componentDidMount() {
-            this.setState({ user: this.props.user });
+            //this.setState({ user: this.props.user });
       }
 
     enableEdit(e){
@@ -99,22 +98,5 @@ Photo:''
                 );
     }
 }
-const withContext = (Component) => {
-    return (props) => {
-      return (
-        <Context.Consumer>
-          {({ name, user, updateName }) => {
-            return (
-              <Component
-                {...props}
-                name={name}
-                user={user}
-                updateName={updateName}
-              />
-            );
-          }}
-        </Context.Consumer>
-      );
-    };
-  };
-export default withContext(UserProfile);
+
+export default UserProfile;

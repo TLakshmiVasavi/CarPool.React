@@ -1,9 +1,25 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import axios from "axios";
 import { TextField } from "@material-ui/core";
 import "../StyleSheets/App.css";
 import UserContext from "./UserContext";
+import "../StyleSheets/Colors.css";
+
+const formValid = ({ formErrors, ...rest }) => {
+  let valid = true;
+
+  Object.values(formErrors).forEach((val) => {
+    val.length > 0 && (valid = false);
+  });
+
+  // validate the form was filled out
+  Object.values(rest).forEach((val) => {
+    val === null && (valid = false);
+  });
+
+  return valid;
+};
 
 class LoginForm extends Component {
   static contextType = UserContext;
@@ -55,9 +71,8 @@ class LoginForm extends Component {
         <form onSubmit={this.handleSubmit} noValidate>
           <h1 className="form-heading underline">Log In</h1>
           <TextField
-            variant="filled"
+          className="bg-white"
             required
-            id="id"
             label="Id"
             value={this.state.id}
             onChange={this.handleChange}
@@ -67,9 +82,8 @@ class LoginForm extends Component {
             helperText={formErrors.id}
           />
           <TextField
-            variant="filled"
+          className="bg-white"
             required
-            id="password"
             label="Password"
             value={this.state.password}
             onChange={this.handleChange}
@@ -86,7 +100,10 @@ class LoginForm extends Component {
           />
           <div className="form-group white">
             Not a member yet?
-            <a asp-action="SignUp" className="underline white">
+            <a className="underline white" onClick={() => {
+        this.props.history.push("/SignUp");
+   }}>
+              
               SIGN UP
             </a>
           </div>

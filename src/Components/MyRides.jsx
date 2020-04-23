@@ -2,8 +2,10 @@ import React from "react";
 import { Container, Row, Col } from "react-grid-system";
 import axios from "axios";
 import { MdLocationOn } from "react-icons/md";
+import UserContext from "./UserContext";
 
 class MyRides extends React.Component {
+  static contextType = UserContext;
   state = {
     Offers: [],
     Bookings: [],

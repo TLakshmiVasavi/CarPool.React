@@ -7,16 +7,23 @@ class UserProvider extends Component {
   constructor(props){
       super(props);
     this.state = {
-        signed:false,
+        signed:true,
+        name:"vasavi",
         user: {
-            name:"vasavi"
+          name:'Vasavi',
+mail:'',
+number:'',
+age:'',
+gender:'',
+photo:''
+            
         },
       }
-      this.toogleAuth=this.toogleAuth.bind(this);
+      this.toggleAuth=this.toggleAuth.bind(this);
       this.setUser=this.setUser.bind(this);
   }
   
-  toogleAuth()
+  toggleAuth()
   {
     this.setState({signed:!this.state.signed});
   }
@@ -34,8 +41,9 @@ class UserProvider extends Component {
     return (
       <UserContext.Provider
         value={{
+          signed:this.state.signed,
           user:this.state.user,
-          toogleAuth:this.state.toogleAuth,
+          toggleAuth:this.toggleAuth,
           setUser:this.setUser,
         }}
       >
