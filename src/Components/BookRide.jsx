@@ -27,8 +27,8 @@ const formValid = ({ formErrors, ...rest }) => {
 class BookRide extends React.Component {
   constructor() {
     super();
-    this.state = { 
-      Matchings:[],
+    this.state = {
+      Matchings: [],
       isChecked: false,
       selectedDate: new Date(),
       from: "",
@@ -38,19 +38,24 @@ class BookRide extends React.Component {
         from: "",
         to: "",
         time: "",
-      }, };
+      },
+    };
     this.handleChecked = this.handleChecked.bind(this); // set this, because you need get methods from CheckBox
-  this.handleSubmit=this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChecked() {
     this.setState({ isChecked: !this.state.isChecked });
   }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault();
     if (formValid(this.state)) {
       axios
-        .post("https://localhost:5001/api/RideApi/BookRide?userId="+this.context.user.mail, this.state)
+        .post(
+          "https://localhost:5001/api/RideApi/BookRide?userId=" +
+            this.context.user.mail,
+          this.state
+        )
         .then(function (res) {
           this.setState({ Matchings: res.data });
         })
@@ -65,106 +70,103 @@ class BookRide extends React.Component {
     return (
       <div className="OfferRide">
         <Row>
-        <Col md={4}>
-          <div className="shadowBox">
-            <Row>
-              <Col md={8}>
-                <h3>Book a Ride</h3>
-                <small>We get you Rides asap!</small>
-              </Col>
-              <Col md={2}>
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    className="checkbox"
-                    onChange={this.handleChecked}
-                  />
-                  <span className="slider round"></span>
-                </label>
-              </Col>
-            </Row>
-
-            <div id="first">
+          <Col md={4}>
+            <div className="shadowBox">
               <Row>
                 <Col md={8}>
-                  <TextField
-                    label="From"
-                    value={this.state.from}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    name="from"
-                    error={formErrors.from.length > 0}
-                    helperText={formErrors.from}
-                  />
-                  <TextField
-                    label="To"
-                    value={this.state.to}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    name="to"
-                    error={formErrors.to.length > 0}
-                    helperText={formErrors.to}
-                  />
+                  <h3>Book a Ride</h3>
+                  <small>We get you Rides asap!</small>
                 </Col>
                 <Col md={2}>
-                  <div className="dot" />
-                  <div className="dot" />
-                  <div className="dot" />
-                  <MdLocationOn />
+                  <label className="switch">
+                    <input
+                      type="checkbox"
+                      className="checkbox"
+                      onChange={this.handleChecked}
+                    />
+                    <span className="slider round"></span>
+                  </label>
                 </Col>
               </Row>
-              <Row>
-                <Col md={8}>
-                  <small>Date</small>
-                  <DatePicker
-                    dateFormat="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="Date picker inline"
-                    selected={this.state.selectedDate}
-                    onChange={this.dateHandler}
-                    minDate={new Date()}
-                  />
-                  </Col>
-                    <Col md={12}>
-                  <small>Time</small>
-                  <div
-                    data-toggle="button"
-                    className="btn-group"
-                    role="group"
-                    aria-label="Basic example"
-                  >
-                    {times.map((item, index) => (
-                      <button
-                        type="button"
-                        key={index}
-                        className={
-                          this.state.time === item
-                            ? "selected"
-                            : "" + "time "
-                        }
-                        onClick={this.onButtonChange}
-                        value={item}
-                      >
-                        {item}
-                      </button>
-                    ))}
-                  </div>
-                  <input
-                  onClick={this.handleSubmit}
-            type="submit"
-            className="submit bg-darkorange"
-            value="Submit"
-            data-test="submit"
-          />
-                </Col>
-              </Row>
-            </div>
-          </div>
-        </Col>
-<Col md={8}>
 
-<Col id="matches" md={10}>
+              <div id="first">
+                <Row>
+                  <Col md={8}>
+                    <TextField
+                      label="From"
+                      value={this.state.from}
+                      onChange={this.handleChange}
+                      margin="normal"
+                      name="from"
+                      error={formErrors.from.length > 0}
+                      helperText={formErrors.from}
+                    />
+                    <TextField
+                      label="To"
+                      value={this.state.to}
+                      onChange={this.handleChange}
+                      margin="normal"
+                      name="to"
+                      error={formErrors.to.length > 0}
+                      helperText={formErrors.to}
+                    />
+                  </Col>
+                  <Col md={2}>
+                    <div className="dot" />
+                    <div className="dot" />
+                    <div className="dot" />
+                    <MdLocationOn />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={8}>
+                    <small>Date</small>
+                    <DatePicker
+                      dateFormat="MM/dd/yyyy"
+                      margin="normal"
+                      id="date-picker-inline"
+                      label="Date picker inline"
+                      selected={this.state.selectedDate}
+                      onChange={this.dateHandler}
+                      minDate={new Date()}
+                    />
+                  </Col>
+                  <Col md={12}>
+                    <small>Time</small>
+                    <div
+                      data-toggle="button"
+                      className="btn-group"
+                      role="group"
+                      aria-label="Basic example"
+                    >
+                      {times.map((item, index) => (
+                        <button
+                          type="button"
+                          key={index}
+                          className={
+                            this.state.time === item ? "selected" : "" + "time "
+                          }
+                          onClick={this.onButtonChange}
+                          value={item}
+                        >
+                          {item}
+                        </button>
+                      ))}
+                    </div>
+                    <input
+                      onClick={this.handleSubmit}
+                      type="submit"
+                      className="submit bg-darkorange"
+                      value="Submit"
+                      data-test="submit"
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </div>
+          </Col>
+          <Col md={8}>
+            <Col id="matches" md={10}>
               {this.state.Matches.map((item) => (
                 <div className="shadowBox">
                   <Row>
@@ -238,11 +240,8 @@ class BookRide extends React.Component {
                 </div>
               ))}
             </Col>
-
-
-
-  </Col>      
-</Row>
+          </Col>
+        </Row>
       </div>
     );
   }
