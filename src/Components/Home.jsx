@@ -1,34 +1,32 @@
 import React from 'react';
 import UserContext from './UserContext';
-import { Row, Col,Container } from "react-grid-system";  
+import { Row, Col, Container } from "react-grid-system";
 
-class Home extends React.Component
-{
+class Home extends React.Component {
     static contextType = UserContext
-    render()
-    {
-        return(
+    render() {
+        return (
             <div className="Home">
-                
-                <div className="center">   
-                <Container>
-                <Row>
-                
-                <div className="name">Hey {this.context.user.name} !</div> 
-                
-                </Row>
-                <Row>
-                    <Col md={6}>
 
-                <div className="box bg-darkviolet" onClick={() => {
-        this.props.history.push("/SearchRide");
-   }}>Book a Ride</div></Col>
-                <Col md={6}>
-                <div className="box bg-darkorange" onClick={() => {
-        this.props.history.push("/OfferRide");
-   }}>Offer a Ride</div></Col>
-                </Row>
-                </Container>
+                <div className="center">
+                    <Container>
+                        <Row>
+
+                            <div className="name">Hey {this.context.user.name} !</div>
+
+                        </Row>
+                        <Row>
+                            <Col md={6}>
+
+                                <div className="box bg-darkviolet" onClick={() => {
+                                    this.props.history.push("/BookRide");
+                                }}>Book a Ride</div></Col>
+                            <Col md={6}>
+                                <div className="box bg-darkorange" onClick={() => {
+                                    this.props.history.push("/OfferRide");
+                                }}>Offer a Ride</div></Col>
+                        </Row>
+                    </Container>
                 </div>
             </div>
         );

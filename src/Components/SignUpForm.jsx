@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { TextField,OutlinedInput,InputLabel,InputAdornment,FormControl} from "@material-ui/core";
+import { TextField, OutlinedInput, InputLabel, InputAdornment, FormControl } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
 import UserContext from "./UserContext";
@@ -63,7 +63,7 @@ const mailRegex = RegExp(
 
 const phoneRegEx = RegExp(/^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/);
 
-const numberRegEx=RegExp(/^([0-9])*$/);
+const numberRegEx = RegExp(/^([0-9])*$/);
 
 class SignUpForm extends Component {
   static contextType = UserContext;
@@ -104,7 +104,7 @@ class SignUpForm extends Component {
       },
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleVehicleChange=this.handleVehicleChange.bind(this);
+    this.handleVehicleChange = this.handleVehicleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlefile = this.handlefile.bind(this);
     this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
@@ -125,7 +125,7 @@ class SignUpForm extends Component {
     evt.preventDefault();
     const data = new FormData();
     Object.keys(this.state).map((i) => data.append(i, this.state[i]));
-    await axios.post("https://localhost:5001/api/UserApi/SignUp",data)
+    await axios.post("https://localhost:5001/api/UserApi/SignUp", data)
       .then(function (response) {
         this.props.toogleAuth();
         this.props.setUser(response.data);
@@ -136,19 +136,19 @@ class SignUpForm extends Component {
       });
   }
 
-  handleVehicleChange(e){
+  handleVehicleChange(e) {
     const { name, value } = e.target;
-    let vehicle={ ...this.state.vehicle};
+    let vehicle = { ...this.state.vehicle };
     let formErrors = { ...this.state.formErrors };
-    vehicle[name]=value;
-    this.setState({vehicle});
+    vehicle[name] = value;
+    this.setState({ vehicle });
     if (this.state.hasVehicle && value.length == 0) {
       formErrors[name] = "Required!";
-    } else 
-      if(name=="number") {
-          formErrors.number = numberRegEx.test(value)
-            ? ""
-            : "Please enter a valid number";
+    } else
+      if (name == "number") {
+        formErrors.number = numberRegEx.test(value)
+          ? ""
+          : "Please enter a valid number";
       }
   }
 
@@ -177,9 +177,9 @@ class SignUpForm extends Component {
     }
 
     this.setState({ formErrors });
-      this.setState({
-        [e.target.name]: e.target.value,
-      });
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   }
 
   handlefile(e) {
@@ -300,8 +300,8 @@ class SignUpForm extends Component {
                     {this.state.showPassword ? (
                       <Visibility />
                     ) : (
-                      <VisibilityOff />
-                    )}
+                        <VisibilityOff />
+                      )}
                   </IconButton>
                 </InputAdornment>
               }
@@ -380,8 +380,8 @@ class SignUpForm extends Component {
           <div className="form-group white">
             Not a member yet?
             <a className="underline white" onClick={() => {
-        this.props.history.push("/Login");
-   }}>>
+              this.props.history.push("/Login");
+            }}>>
               Login
             </a>
           </div>

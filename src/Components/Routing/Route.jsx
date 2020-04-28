@@ -5,7 +5,7 @@ import UserContext from "../UserContext";
 class RouteWrapper extends React.Component {
   static contextType = UserContext;
   render() {
-    let {signed}=this.context;
+    let { signed } = this.context;
     const { isPrivate } = this.props;
     if (isPrivate && !signed) {
       return <Redirect to="/" />;
@@ -13,7 +13,7 @@ class RouteWrapper extends React.Component {
     if (!isPrivate && signed) {
       return <Redirect to="/Home" />;
     }
-    return <Route exact path={this.props.path} component={this.props.component} isPrivate={isPrivate}/>
+    return <Route exact path={this.props.path} component={this.props.component} isPrivate={isPrivate} />
   }
 }
 

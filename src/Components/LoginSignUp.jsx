@@ -10,14 +10,14 @@ class LoginSignUp extends Component {
     return (
       <React.Fragment>
         <div className="leftHalf">
-        <div className="heading">TURN<div className="miles"> MILES</div><br />INTO <div className="money">MONEY</div><div className="normal">RIDES ON TAP</div></div>
+          <div className="heading">TURN<div className="miles"> MILES</div><br />INTO <div className="money">MONEY</div><div className="normal">RIDES ON TAP</div></div>
         </div>
         <Router>
-        <Switch>
-          <Route exact path="/SignUp" component={SignUpForm}/>
-          <Route exact path="/(Login|)/" component={LoginForm}/>
+          <Switch>
+            <Route exact path="/SignUp" component={SignUpForm} />
+            <Route exact path="/(Login|)/" component={LoginForm} />
           </Switch>
-      </Router>
+        </Router>
       </React.Fragment>
     );
   }

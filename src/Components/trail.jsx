@@ -26,7 +26,7 @@
 //           margin="normal"
 //           id="date-picker-inline"
 //           label="Date picker inline"
-//           selected={this.state.selectedDate}
+//           selected={selectedDate}
 //           onChange={this.dateHandler}
 //           minDate={new Date()}
 //         />
@@ -100,7 +100,7 @@
 //   render() {
 //     return (
 //       <div>
-//         {this.state.stops.slice(0, -1).map((item, index) => (
+//         {stops.slice(0, -1).map((item, index) => (
 //           <TextField
 //             key={index}
 //             name={index}
@@ -109,15 +109,15 @@
 //             onChange={this.onChange}
 //           ></TextField>
 //         ))}
-//         { (this.state.stops.length==0) ? (
+//         { (stops.length==0) ? (
 //           <button type="button" onClick={this.onAddItem}>
 //             Add
 //           </button>
 //         ) : (
 //           <TextField
-//             key={this.state.stops.length - 1}
-//             name={this.state.stops.length - 1}
-//             value={this.state.stops.slice(-1)}
+//             key={stops.length - 1}
+//             name={stops.length - 1}
+//             value={stops.slice(-1)}
 //             onChange={this.onChange}
 //             margin="normal"
 //             InputProps={{
@@ -182,7 +182,7 @@
 // render(){
 //   return(
 //     <div className="field-group">
-//     <label className={this.state.fieldActive ? "field-active" : ""}>{this.props.label}</label>
+//     <label className={fieldActive ? "field-active" : ""}>{this.props.label}</label>
 //   <input className="required" type="text" name={this.props.label} onChange={this.handleChange} onFocus={this.activateFocus} onBlur={this.disableFocus} ></input>
 //     </div>
 //   );
@@ -224,9 +224,9 @@
 //   };
 
 //   validateField(fieldName, value) {
-//     let fieldValidationErrors = this.state.formErrors;
-//     let emailValid = this.state.emailValid;
-//     let passwordValid = this.state.passwordValid;
+//     let fieldValidationErrors = formErrors;
+//     let emailValid = emailValid;
+//     let passwordValid = passwordValid;
 
 //     switch (fieldName) {
 //       case "email":
@@ -252,7 +252,7 @@
 
 //   validateForm() {
 //     this.setState({
-//       formValid: this.state.emailValid && this.state.passwordValid,
+//       formValid: emailValid && passwordValid,
 //     });
 //   }
 
@@ -265,11 +265,11 @@
 //       <form className="demoForm">
 //         <h2>Sign up</h2>
 //         <div className="panel panel-default">
-//           <FormErrors formErrors={this.state.formErrors} />
+//           <FormErrors formErrors={formErrors} />
 //         </div>
 //         <div
 //           className={`form-group ${this.errorClass(
-//             this.state.formErrors.email
+//             formErrors.email
 //           )}`}
 //         >
 //           <label htmlFor="email">Email address</label>
@@ -279,13 +279,13 @@
 //             className="form-control"
 //             name="email"
 //             placeholder="Email"
-//             value={this.state.email}
+//             value={email}
 //             onChange={this.handleUserInput}
 //           />
 //         </div>
 //         <div
 //           className={`form-group ${this.errorClass(
-//             this.state.formErrors.password
+//             formErrors.password
 //           )}`}
 //         >
 //           <label htmlFor="password">Password</label>
@@ -294,14 +294,14 @@
 //             className="form-control"
 //             name="password"
 //             placeholder="Password"
-//             value={this.state.password}
+//             value={password}
 //             onChange={this.handleUserInput}
 //           />
 //         </div>
 //         <button
 //           type="submit"
 //           className="btn btn-primary"
-//           disabled={!this.state.formValid}
+//           disabled={!formValid}
 //         >
 //           Sign up
 //         </button>
@@ -521,7 +521,7 @@
 //   }
 // toogleAuth()
 // {
-//   this.setState({signed:!this.state.signed});
+//   this.setState({signed:!signed});
 // }
 
 // setUser(user)
@@ -533,9 +533,9 @@
 //     return (
 //       <Context.Provider
 //         value={{
-//           user:this.state.user,
-//           toogleAuth:this.state.toogleAuth,
-//           setUser:this.state.setUser,
+//           user:user,
+//           toogleAuth:toogleAuth,
+//           setUser:setUser,
 //         }}
 //       >
 //         {this.props.children}
@@ -574,5 +574,193 @@
 //         <p>{`Current User: ${user.name}`}</p>
 //       </div>
 //     )
+//   }
+// }
+
+
+
+
+
+
+//without restricting url
+// import React from 'react';
+// import OfferRide from './Components/OfferRide';
+// import LoginSignUp from './Components/LoginSignUp';
+// import MyRides from './Components/MyRides';
+// import SearchRide from './Components/SearchRide';
+// import UserProfile from './Components/UserProfile';
+// import { 
+//   BrowserRouter as Router, 
+//   Route, 
+//   Link, 
+//   Switch 
+// } from 'react-router-dom'; 
+// import Trail from './Components/trail';
+// import "./StyleSheets/App.css";
+// import './StyleSheets/Colors.css';
+// import Home from './Components/Home';
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <Router history={history}>
+//       <Routes />
+//     </Router>
+//       {/* <Trail/> */}
+//       <Router>
+//         <Switch>
+//           <Route exact path="/(Login|SignUp|)/" component={LoginSignUp}/>
+//           <Route exact path="/Profile" component={UserProfile}/>
+//           <Route exact path="/Home" component={Home}/>
+//           <Route exact path="/MyRides" component={MyRides}/>
+//           <Route exact path="/OfferRide" component={OfferRide}/>
+//           <Route exact path="/SearchRide" component={SearchRide}/>
+//           {/* <Route path="/Validate" component={Form}/> */}
+//         </Switch>
+//       </Router>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
+// import React from 'react';
+// import { createForm, field, useFluentForm } from "react-fluent-form";
+// import * as yup from 'yup';
+// import { TextField } from "@material-ui/core";
+// import { addField, RawField } from "react-fluent-form";
+
+// interface
+
+// const formConfig = createForm()({
+//   username: field.text(),
+//   gender: field.radio().name("gender").unselectable(),
+//   password: field.password().validateOnSubmitOnly()
+// });
+// // addField("datePicker", (initialValue:field.DateValue() = null) =>
+// //   field.raw(initialValue).withValueProp("selected")
+// // );
+
+// class RegistrationForm extends React.Component {
+//   // constructor()
+//   // {
+//   //   this.state= {
+//   //     values,
+//   //     touched,
+//   //     validity,
+//   //     errors,
+//   //     fields,
+//   //     handleSubmit
+//   //   } = useFluentForm(formConfig);
+
+//   // }
+//  constructor(){ 
+//   const {
+//     values,
+//     touched,
+//     validity,
+//     errors,
+//     fields,
+//     handleSubmit
+//   } = useFluentForm(formConfig);
+  
+
+//   //  handleSubmitSuccess = () => console.log(values);
+
+//   // handleSubmitFailure = () => console.log(errors);
+// render(){
+//   return (
+//     <form>
+//       <TextField
+//           className="bg-white"
+//             // required
+//              label="Id"
+//             margin="normal"
+//             {...fields.username}
+//              error={touched.username && !validity.username}
+//              helperText={errors.username}
+//           />
+//           <TextField
+//           className="bg-white"
+//             // required
+//              label="Id"
+//             margin="normal"
+//             {...fields.password}
+//              error={touched.password && !validity.password}
+//              helperText={errors.password}
+//           />
+//       <button type="submit">Submit</button>
+//     </form>
+//   );
+// }
+// }
+// export default RegistrationForm;
+
+
+
+
+
+
+
+
+
+
+//NOT WORKING
+// import implement, { Interface, type } from 'implement-js'
+
+// // CommonJS
+// const implementjs = require('implement-js')
+// const implement = implementjs.default
+// const { Interface, type } = implementjs
+
+
+// class Root extends React.Component   {
+//   constructor(props) {
+//       super(props);
+
+//       this.state = {
+//           // populate state fields according to props fields
+//       };
+//   }
+
+//   render() {
+//       return (
+//           <div>
+//               <NavBar/>
+//               <Jumbotron content={ hero } />
+//               <ContentPanel content={ whatIs } />
+//               <ContentPanel content={ aboutOne } />
+//               <ContentPanel content={ aboutTwo } />
+//               <ContentPanel content={ testimonial } />
+//               <Footer content={ footer } />
+//           </div>
+//       )
+//   }
+// }
+
+// class myComponent<P, S> extends React.Component<>{
+
+// }
+
+
+
+// interface IYoState{
+//   count: number;
+// }
+
+// export class YoComponent extends React.Component<P>{
+//   constructor(props){
+//     super(props);
+//     this.state = { count: 0 };
+//   }
+//   render(){
+//     return <button onClick={ this.increaseCounter} >
+//              <p>Current count: { this.state.count }</p>
+//            </button>;
+//     };
+//   increaseCounter(){
+//     this.setState({ count: this.state.count +1 })
 //   }
 // }

@@ -8,7 +8,7 @@ import LoginSignUp from "../LoginSignUp";
 import Home from "../Home";
 import Route from "./Route";
 import MyRides from '../MyRides';
-import SearchRide from '../SearchRide';
+import BookRide from '../BookRide';
 import UserProfile from '../UserProfile';
 import OfferRide from '../OfferRide';
 
@@ -24,7 +24,7 @@ export default function Routes() {
       <Route exact path="/Home" component={Home} isPrivate/>
       <Route exact path="/MyRides" component={MyRides} isPrivate/>
       <Route exact path="/OfferRide" component={OfferRide} isPrivate/>
-      <Route exact path="/SearchRide" component={SearchRide} isPrivate/>
+      <Route exact path="/BookRide" component={BookRide} isPrivate/>
       {/* <Route path="/dashboard" component={Dashboard} isPrivate /> */}
       {/* redirect user to SignIn page if route does not exist and user is not authenticated */}
       {/* <Route component={SignIn} /> */}

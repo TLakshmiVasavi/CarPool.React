@@ -71,7 +71,7 @@ class LoginForm extends Component {
         <form onSubmit={this.handleSubmit} noValidate>
           <h1 className="form-heading underline">Log In</h1>
           <TextField
-          className="bg-white"
+            className="bg-white"
             required
             label="Id"
             value={this.state.id}
@@ -82,7 +82,7 @@ class LoginForm extends Component {
             helperText={formErrors.id}
           />
           <TextField
-          className="bg-white"
+            className="bg-white"
             required
             label="Password"
             value={this.state.password}
@@ -101,9 +101,9 @@ class LoginForm extends Component {
           <div className="form-group white">
             Not a member yet?
             <a className="underline white" onClick={() => {
-        this.props.history.push("/SignUp");
-   }}>
-              
+              this.props.history.push("/SignUp");
+            }}>
+
               SIGN UP
             </a>
           </div>

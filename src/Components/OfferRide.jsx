@@ -195,8 +195,8 @@ class OfferRide extends React.Component {
                       onChange={this.dateHandler}
                       minDate={new Date()}
                     />
-                    </Col>
-                    <Col md={12}>
+                  </Col>
+                  <Col md={12}>
                     <small>Time</small>
                     <div
                       data-toggle="button"
@@ -227,68 +227,68 @@ class OfferRide extends React.Component {
                 </Row>
               </div>
             ) : (
-              <div id="second">
-                <Row>
-                  <Col md={8}>
-                    {this.state.stops.length == 0 ? (
-                      <button type="button" onClick={this.addStop}>
-                        Add
-                      </button>
-                    ) : (
-                      <React.Fragment>
-                        {this.state.stops.slice(0, -1).map((item, index) => (
-                          <TextField
-                            label={"Stop " + (index + 1)}
-                            value={item}
-                            onChange={this.onStopChange}
-                            margin="normal"
-                            name={index}
-                            error={formErrors.from.length > 0}
-                            helperText={formErrors.from}
-                          />
-                        ))}
-                        <TextField
-                          label={"Stop " + this.state.stops.length}
-                          key={this.state.stops.length - 1}
-                          name={this.state.stops.length - 1}
-                          value={this.state.stops.slice(-1)}
-                          onChange={this.onStopChange}
-                          margin="normal"
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="start">
-                                <Add onClick={this.addStop} />
-                              </InputAdornment>
-                            ),
-                          }}
-                        />
-                      </React.Fragment>
-                    )}
-                  </Col>
-                </Row>
-                <div className="row">
-                  <small>Available Seats</small>
-                  <div className="btn-group" role="group">
-                    {Array.from(
-                      { length: this.state.totalNoOfSeats },
-                      (_, k) => (
-                        <button key={k} type="button" className="number">
-                          {k}
+                <div id="second">
+                  <Row>
+                    <Col md={8}>
+                      {this.state.stops.length == 0 ? (
+                        <button type="button" onClick={this.addStop}>
+                          Add
                         </button>
-                      )
-                    )}
+                      ) : (
+                          <React.Fragment>
+                            {this.state.stops.slice(0, -1).map((item, index) => (
+                              <TextField
+                                label={"Stop " + (index + 1)}
+                                value={item}
+                                onChange={this.onStopChange}
+                                margin="normal"
+                                name={index}
+                                error={formErrors.from.length > 0}
+                                helperText={formErrors.from}
+                              />
+                            ))}
+                            <TextField
+                              label={"Stop " + this.state.stops.length}
+                              key={this.state.stops.length - 1}
+                              name={this.state.stops.length - 1}
+                              value={this.state.stops.slice(-1)}
+                              onChange={this.onStopChange}
+                              margin="normal"
+                              InputProps={{
+                                endAdornment: (
+                                  <InputAdornment position="start">
+                                    <Add onClick={this.addStop} />
+                                  </InputAdornment>
+                                ),
+                              }}
+                            />
+                          </React.Fragment>
+                        )}
+                    </Col>
+                  </Row>
+                  <div className="row">
+                    <small>Available Seats</small>
+                    <div className="btn-group" role="group">
+                      {Array.from(
+                        { length: this.state.totalNoOfSeats },
+                        (_, k) => (
+                          <button key={k} type="button" className="number">
+                            {k}
+                          </button>
+                        )
+                      )}
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="submit"
+                      className="submit bg-darkorange"
+                      value="Submit"
+                      data-test="submit"
+                    />
                   </div>
                 </div>
-                <div className="form-group">
-                <input
-            type="submit"
-            className="submit bg-darkorange"
-            value="Submit"
-            data-test="submit"
-          />
-                </div>
-              </div>
-            )}
+              )}
           </div>
         </Col>
       </div>

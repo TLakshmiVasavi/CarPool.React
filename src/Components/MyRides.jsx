@@ -14,7 +14,7 @@ class MyRides extends React.Component {
 
     axios
       .get(
-        "https://localhost:5001/api/RideApi/GetOfferedRides?userId="+this.context.user.mail
+        "https://localhost:5001/api/RideApi/GetOfferedRides?userId=" + this.context.user.mail
       )
       .then((res) => {
         // console.log(res);
@@ -22,7 +22,7 @@ class MyRides extends React.Component {
       });
     axios
       .get(
-        "https://localhost:5001/api/RideApi/GetBookings?userId="+this.context.user.mail
+        "https://localhost:5001/api/RideApi/GetBookings?userId=" + this.context.user.mail
       )
       .then((res) => {
         // console.log(res);

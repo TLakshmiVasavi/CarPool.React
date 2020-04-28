@@ -1,101 +1,99 @@
 import React from 'react';
-import {Row,Col,Container} from 'react-grid-system';
+import { Row, Col, Container } from 'react-grid-system';
 import MenuListComposition from './MenuList';
 
-class UserProfile extends React.Component
-{
-    constructor(props){
+class UserProfile extends React.Component {
+    constructor(props) {
         super(props)
-        this.state={
-            disable:true,
-            user:{
-                Name:'',
-Mail:'',
-Number:'',
-Age:'',
-Gender:'',
-Photo:''
+        this.state = {
+            disable: true,
+            user: {
+                Name: '',
+                Mail: '',
+                Number: '',
+                Age: '',
+                Gender: '',
+                Photo: ''
+            }
         }
-    }
-        this.enableEdit=this.enableEdit.bind(this);
-        this.handleSubmit=this.handleSubmit.bind(this);
-        this.disableEdit=this.disableEdit.bind(this);
+        this.enableEdit = this.enableEdit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.disableEdit = this.disableEdit.bind(this);
     }
 
     componentDidMount() {
-            //this.setState({ user: this.props.user });
-      }
-
-    enableEdit(e){
-        this.setState({disable:false})
+        //this.setState({ user: this.props.user });
     }
 
-    handleSubmit(e){
-        this.setState({disable:true})
+    enableEdit(e) {
+        this.setState({ disable: false })
     }
 
-    disableEdit(e){
-        this.setState({disable:true})
+    handleSubmit(e) {
+        this.setState({ disable: true })
     }
 
-    render()
-    {
-        return(
+    disableEdit(e) {
+        this.setState({ disable: true })
+    }
+
+    render() {
+        return (
             <Container>
-                <MenuListComposition/>
+                <MenuListComposition />
                 <div className="shadowBox Profile center">
-                <Row>
-                    <Col md={6}>
-                        Name
+                    <Row>
+                        <Col md={6}>
+                            Name
                     </Col>
-                    <Col md={6}>
-                    <input type="text" value={this.state.name} disabled={this.state.disable}/>
+                        <Col md={6}>
+                            <input type="text" value={this.state.name} disabled={this.state.disable} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}>
+                            Age
                     </Col>
-                </Row>
-                <Row>
-                    <Col md={6}>
-                        Age
+                        <Col md={6}>
+                            <input type="number" value={this.state.age} disabled={this.state.disable} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}>
+                            Mail
                     </Col>
-                    <Col md={6}>
-                    <input type="number" value={this.state.age} disabled={this.state.disable}/>
+                        <Col md={6}>
+                            <input type="text" value={this.state.mail} disabled={this.state.disable} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}>
+                            Number
                     </Col>
-                </Row>
-                <Row>
-                    <Col md={6}>
-                        Mail
+                        <Col md={6}>
+                            <input type="text" value={this.state.number} disabled={this.state.disable} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}>
+                            Gender
                     </Col>
-                    <Col md={6}>
-                    <input type="text" value={this.state.mail} disabled={this.state.disable}/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md={6}>
-                        Number
-                    </Col>
-                    <Col md={6}>
-                        <input type="text" value={this.state.number} disabled={this.state.disable}/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md={6}>
-                        Gender
-                    </Col>
-                    <Col md={6}>
-                    <select value={this.state.gender}   disabled={this.state.disable}>
-  <option value="Female">Female</option>
-  <option value="Male">Male</option>
-</select>
-                    </Col>
-                </Row>
-                <Row>
-  { this.state.disable?              <button id="edit" value="edit" onClick={this.enableEdit}>edit</button>
-    :<React.Fragment><button type="submit" id="save" value="save" onClick={this.handleSubmit}>save</button>
-    <button id="cancel" value="cancel" onClick={this.disableEdit}>cancel</button></React.Fragment> }
-    </Row>
-</div>
+                        <Col md={6}>
+                            <select value={this.state.gender} disabled={this.state.disable}>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                            </select>
+                        </Col>
+                    </Row>
+                    <Row>
+                        {this.state.disable ? <button id="edit" value="edit" onClick={this.enableEdit}>edit</button>
+                            : <React.Fragment><button type="submit" id="save" value="save" onClick={this.handleSubmit}>save</button>
+                                <button id="cancel" value="cancel" onClick={this.disableEdit}>cancel</button></React.Fragment>}
+                    </Row>
+                </div>
             </Container>
 
-                );
+        );
     }
 }
 
