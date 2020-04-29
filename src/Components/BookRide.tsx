@@ -7,50 +7,91 @@ import TextField from "@material-ui/core/TextField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import {RouteComponentProps} from "react-router-dom";
+import OfferRide from "./OfferRide";
 
 const times = ["5am-9am", "9am-12pm", "12pm-3pm", "3pm-6pm", "6pm-9pm"];
 
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
+// const formValid = ({ formErrors, ...rest }) => {
+//   let valid = true;
 
-  Object.values(formErrors).forEach((val) => {
-    val.length > 0 && (valid = false);
-  });
+//   Object.values(formErrors).forEach((val) => {
+//     val.length > 0 && (valid = false);
+//   });
 
-  // validate the form was filled out
-  Object.values(rest).forEach((val) => {
-    val === null && (valid = false);
-  });
+//   // validate the form was filled out
+//   Object.values(rest).forEach((val) => {
+//     val === null && (valid = false);
+//   });
 
-  return valid;
-};
+//   return valid;
+// };
 
-class BookRide extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      Matchings: [],
-      isChecked: false,
-      selectedDate: new Date(),
-      from: "",
-      to: "",
-      time: "",
+interface IState
+{
+      isChecked: Boolean,
+      selectedDate: Date,
+      from: string,
+      to: string,
+      time:string,
       formErrors: {
-        from: "",
-        to: "",
-        time: "",
+        from: string,
+        to: string,
+        time: string,
       },
-    };
-    this.handleChecked = this.handleChecked.bind(this); // set this, because you need get methods from CheckBox
+}
+
+interface IRideDetails
+{
+  Id:number,
+  VehicleNumber:string,
+  StartDate:Date,
+  Cost:number,
+  Provider:string,
+  ProviderId:string,
+  From:string,
+  To:string
+}
+
+class BookRide extends React.Component<RouteComponentProps,IState> {
+  constructor(props:RouteComponentProps) {
+    super(props);
+    this.handleChecked = this.handleChecked.bind(this); 
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
+    this.handleChange = this.handleChange.bind(this);
+    this.dateHandler=this.dateHandler.bind(this);
+       }
+       dateHandler(e:any)
+       {
+         console.log(e);
+         this.setState({["selectedDate"]:e});
+       }
+onButtonChange(e:any)
+{
+  this.setState({time:e.target.value});
+}  
+
   handleChecked() {
     this.setState({ isChecked: !this.state.isChecked });
   }
 
-  handleSubmit(e) {
+  handleChange(e:any) {
+    const { name, value } = e.target;
+    let formErrors:any = { ...this.state.formErrors };
+    if (value.length == 0) {
+      formErrors[name] = "Required!";
+    }
+    this.setState({ formErrors  });
+    this.setState((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+  } 
+
+  handleSubmit(e:any) {
+    var x=this;
     e.preventDefault();
-    if (formValid(this.state)) {
+    // if (formValid(this.state)) {
       axios
         .post(
           "https://localhost:5001/api/RideApi/BookRide?userId=" +
@@ -58,12 +99,15 @@ class BookRide extends React.Component {
           this.state
         )
         .then(function (res) {
-          this.setState({ Matchings: res.data });
-        })
+          res.data.map((item:IRideDetails) => (
+            <OfferRide {...item}/>
+            ))}
+          //x.setState({ Matches: res.data });
+        )
         .catch(function () {
           alert("Error Loading Page");
         });
-    }
+    //}
   }
 
   render() {
@@ -124,9 +168,9 @@ class BookRide extends React.Component {
                     <small>Date</small>
                     <DatePicker
                       dateFormat="MM/dd/yyyy"
-                      margin="normal"
+                      //margin="normal"
                       id="date-picker-inline"
-                      label="Date picker inline"
+                      //label="Date picker inline"
                       selected={this.state.selectedDate}
                       onChange={this.dateHandler}
                       minDate={new Date()}
@@ -168,78 +212,7 @@ class BookRide extends React.Component {
           </Col>
           <Col md={8}>
             <Col id="matches" md={10}>
-              {this.state.Matches.map((item) => (
-                <div className="shadowBox">
-                  <Row>
-                    <Col md={8}>
-                      <h2>{item.id}Lakshmi Vasavi</h2>
-                    </Col>
-                    <Col md={4}>
-                      <img src="#" />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={4}>
-                      <small>From</small>
-                      <p>{item.source}Markapur</p>
-                    </Col>
-                    <Col md={4}>
-                      <div className="dot" />
-                      <div className="dot" />
-                      <div className="dot" />
-                      <MdLocationOn className="darkviolet" />
-                    </Col>
-                    <Col md={4}>
-                      <small>To</small>
-                      <p>{item.destination}Y.Palem</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={4}>
-                      <small>Date</small>
-                      <p>{item.startDateTime}4/15/20</p>
-                    </Col>
-                    <Col md={4} />
-                    <Col md={4}>
-                      <small>Time</small>
-                      <p>5-9</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={4}>
-                      <small>Price</small>
-                      <p>180</p>
-                    </Col>
-                    <Col md={4} />
-                    <Col md={4}>
-                      <small>Seats Available</small>
-                      <p>5</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={4}>
-                      <small>Ride Status</small>
-                      <p>{item.isRideCompleted}Completed</p>
-                    </Col>
-                    <Col md={4} />
-                    <Col md={4}>
-                      <small>Request Status</small>
-                      <p>Approved</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={4}>
-                      <small>Vehicle</small>
-                      <p>Car</p>
-                    </Col>
-                    <Col md={4} />
-                    <Col md={4}>
-                      <small>Vehicle Number</small>
-                      <p>{item.vehicleId}12345</p>
-                    </Col>
-                  </Row>
-                </div>
-              ))}
+              {/* {this.state.Matches */}
             </Col>
           </Col>
         </Row>

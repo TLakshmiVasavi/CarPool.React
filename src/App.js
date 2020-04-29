@@ -1,13 +1,13 @@
 
 import React from 'react';
-import { Router,Route } from 'react-router-dom';
+import { BrowserRouter as Router,Route } from 'react-router-dom';
 
 import history from './Components/Routing/history';
-import Routes from './Components/Routing/Routes';
+import Routes from './Components/Routing/Routes.tsx';
 import MenuListComposition from './Components/MenuList';
 import './StyleSheets/App.css';
 import {UserProvider} from "./Components/UserContext";
-import RegistrationForm from "./Components/trail";
+import Header from "./Components/test.tsx";
 
 function App() {
   return (
@@ -18,8 +18,7 @@ function App() {
     <Routes />
     </Router>
     </UserProvider>
-    </div>
-    //<RegistrationForm/>
+    </div>   
   );
 }
 

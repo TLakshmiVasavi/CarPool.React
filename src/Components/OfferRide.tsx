@@ -10,43 +10,47 @@ import axios from "axios";
 import "../StyleSheets/OfferRide.css";
 import "../StyleSheets/Toogle.css";
 
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
+// const formValid = ({ formErrors, ...rest }) => {
+//   let valid = true;
 
-  Object.values(formErrors).forEach((val) => {
-    val.length > 0 && (valid = false);
-  });
+//   Object.values(formErrors).forEach((val) => {
+//     val.length > 0 && (valid = false);
+//   });
 
-  // validate the form was filled out
-  Object.values(rest).forEach((val) => {
-    val === null && (valid = false);
-  });
+//   // validate the form was filled out
+//   Object.values(rest).forEach((val) => {
+//     val === null && (valid = false);
+//   });
 
-  return valid;
-};
+//   return valid;
+// };
 
 const times = ["5am-9am", "9am-12pm", "12pm-3pm", "3pm-6pm", "6pm-9pm"];
 
-class OfferRide extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      totalNoOfSeats: 3,
-      noOfSeats: null,
-      isChecked: false,
-      selectedDate: new Date(),
-      stops: [],
-      from: "",
-      to: "",
-      time: "",
-      formErrors: {
-        from: "",
-        to: "",
-        stops: [],
-        time: "",
-      },
-      firstHalf: true,
-    };
+interface IState {
+  [key: string]: any;
+  totalNoOfSeats: number,
+  noOfSeats: number,
+  isChecked: Boolean,
+  selectedDate: Date,
+  stops: string[],
+  from: string,
+  to: string,
+  time: string,
+  formErrors: {
+    [key: string]: any;
+    from: string,
+    to: string,
+    stops: string[],
+    time: string,
+  },
+  firstHalf: Boolean,
+}
+
+class OfferRide extends React.Component<{},IState> {
+  constructor(props:any) {
+    super(props);
+    
     this.handleChecked = this.handleChecked.bind(this);
     this.dateHandler = this.dateHandler.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -57,7 +61,7 @@ class OfferRide extends React.Component {
     this.onButtonChange = this.onButtonChange.bind(this);
   }
 
-  handleChange(e) {
+  handleChange(e:any) {
     const { name, value } = e.target;
     let formErrors = { ...this.state.formErrors };
     if (value.length == 0) {
@@ -66,9 +70,9 @@ class OfferRide extends React.Component {
     this.setState({ formErrors, [name]: value });
   }
 
-  handleSubmit(e) {
+  handleSubmit(e:any) {
     e.preventDefault();
-    if (formValid(this.state)) {
+    //if (formValid(this.state)) {
       axios({
         method: "post",
         url: "https://localhost:5001/api/UserApi/Login",
@@ -81,10 +85,10 @@ class OfferRide extends React.Component {
           //handle error
           // console.log(response);
         });
-    }
+   // }
   }
 
-  onStopChange(e) {
+  onStopChange(e:any) {
     // console.log(e.target);
     const { name, value } = e.target;
     this.setState((state) => {
@@ -101,7 +105,7 @@ class OfferRide extends React.Component {
     });
   }
 
-  dateHandler(e) {
+  dateHandler(e:any) {
     // console.log(e);
     this.setState({ ["selectedDate"]: e });
   }
@@ -124,13 +128,13 @@ class OfferRide extends React.Component {
     this.setState({ firstHalf: false });
   }
 
-  onButtonChange(e) {
+  onButtonChange(e:any) {
     // console.log(e);
     this.setState({ time: e.target.value });
   }
 
   render() {
-    const { classes } = this.props;
+    //const { classes } = this.props;
     const { formErrors } = this.state;
     return (
       <div className="OfferRide">
@@ -188,9 +192,9 @@ class OfferRide extends React.Component {
                     <small>Date</small>
                     <DatePicker
                       dateFormat="MM/dd/yyyy"
-                      margin="normal"
+                      //margin="normal"
                       id="date-picker-inline"
-                      label="Date picker inline"
+                    //  label="Date picker inline"
                       selected={this.state.selectedDate}
                       onChange={this.dateHandler}
                       minDate={new Date()}
@@ -242,7 +246,7 @@ class OfferRide extends React.Component {
                                 value={item}
                                 onChange={this.onStopChange}
                                 margin="normal"
-                                name={index}
+                             //   name={index}
                                 error={formErrors.from.length > 0}
                                 helperText={formErrors.from}
                               />
@@ -250,7 +254,7 @@ class OfferRide extends React.Component {
                             <TextField
                               label={"Stop " + this.state.stops.length}
                               key={this.state.stops.length - 1}
-                              name={this.state.stops.length - 1}
+                          //    name={this.state.stops.length - 1}
                               value={this.state.stops.slice(-1)}
                               onChange={this.onStopChange}
                               margin="normal"

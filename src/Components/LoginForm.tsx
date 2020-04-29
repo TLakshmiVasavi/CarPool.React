@@ -5,64 +5,84 @@ import { TextField } from "@material-ui/core";
 import "../StyleSheets/App.css";
 import UserContext from "./UserContext";
 import "../StyleSheets/Colors.css";
+import {render} from "react-dom";
+import {RouteComponentProps} from "react-router-dom";
 
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
+// const formValid = ({ formErrors, ...rest }) => {
+//   let valid = true;
 
-  Object.values(formErrors).forEach((val) => {
-    val.length > 0 && (valid = false);
-  });
+//   Object.values(formErrors).forEach((val) => {
+//     val.length > 0 && (valid = false);
+//   });
 
-  // validate the form was filled out
-  Object.values(rest).forEach((val) => {
-    val === null && (valid = false);
-  });
+//   // validate the form was filled out
+//   Object.values(rest).forEach((val) => {
+//     val === null && (valid = false);
+//   });
 
-  return valid;
-};
+//   return valid;
+// };
 
-class LoginForm extends Component {
-  static contextType = UserContext;
-
-  constructor(props) {
-    super(props);
-    console.log(this.props);
-    this.state = {
-      id: "",
-      password: "",
+interface IState
+{
+    id:string,
+      password: string,
       formErrors: {
-        id: "",
-        password: "",
-      },
-    };
+        id: string,
+        password: string,
+      }
+}
+
+class LoginForm extends Component<RouteComponentProps,IState> {
+  static contextType = UserContext;
+  context: React.ContextType<typeof UserContext>;
+
+  constructor(props:RouteComponentProps) {
+    super(props);
+    // console.log(this.props);
+    // this.state = {
+    //   id: "",
+    //   password: "",
+    //   formErrors: {
+    //     id: "",
+    //     password: "",
+    //   },
+    // };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  
 
-  handleSubmit(e) {
+  handleSubmit(e:any) {
+    var x=this.props.history;
+    const { toggleAuth,setUser } = this.context!;
     e.preventDefault();
-    if (formValid(this.state)) {
+    // if (formValid(this.state)) {
       axios
         .post("https://localhost:5001/api/UserApi/Login", this.state)
         .then(function (response) {
-          this.context.toogleAuth();
-          this.context.setUser(response.data);
-          this.props.history.push("/Home");
+          toggleAuth();
+          setUser(response.data);
+          x.push("/Home");
         })
         .catch(function () {
           alert("Error Loading Page");
         });
-    }
+    //}
   }
 
-  handleChange(e) {
+  handleChange(e:any) {
     const { name, value } = e.target;
-    let formErrors = { ...this.state.formErrors };
+    let formErrors:any = { ...this.state.formErrors };
     if (value.length == 0) {
       formErrors[name] = "Required!";
     }
-    this.setState({ formErrors, [name]: value });
-  }
+    this.setState({ formErrors  });
+    this.setState((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+  }  
 
   render() {
     const { formErrors } = this.state;

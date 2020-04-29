@@ -4,29 +4,30 @@ import { TextField, OutlinedInput, InputLabel, InputAdornment, FormControl } fro
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
 import UserContext from "./UserContext";
+import {RouteComponentProps} from "react-router-dom";
 
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
+// const formValid = ({ formErrors, ...rest }) => {
+//   let valid = true;
 
-  Object.values(formErrors).forEach((val) => {
-    val.length > 0 && (valid = false);
-  });
+//   Object.values(formErrors).forEach((val) => {
+//     val.length > 0 && (valid = false);
+//   });
 
-  // validate the form was filled out
-  Object.values(rest).forEach((val) => {
-    val === null && (valid = false);
-  });
+//   // validate the form was filled out
+//   Object.values(rest).forEach((val) => {
+//     val === null && (valid = false);
+//   });
 
-  return valid;
-};
+//   return valid;
+// };
 
 const Gender = [
   {
-    value: true,
+    value: "Female",
     label: "Female",
   },
   {
-    value: false,
+    value: "Male",
     label: "Male",
   },
 ];
@@ -44,11 +45,11 @@ const vehicleType = [
 
 const hasVehicle = [
   {
-    value: true,
+    value: "true",
     label: "Yes",
   },
   {
-    value: false,
+    value: "false",
     label: "No",
   },
 ];
@@ -65,44 +66,49 @@ const phoneRegEx = RegExp(/^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-/\s.]?[0-9]{4}$/);
 
 const numberRegEx = RegExp(/^([0-9])*$/);
 
-class SignUpForm extends Component {
+interface IState{
+  [key: string]: any;
+  //[index: number]: string; 
+  name: string,
+  mail: string,
+  password: string,
+  age: number,
+  number: string,
+  photo: any,
+  gender: string,
+  hasVehicle: string,
+  vehicle: {
+    [key: string]: any;
+    model: string,
+    number: string,
+    capacity: number,
+  },
+  vehicleType: string,
+  showPassword: Boolean,
+  formErrors: {
+    [key: string]: any;
+    name: string,
+    mail: string,
+    password: string,
+    age: string,
+    number: string,
+    photo: string,
+    gender: string,
+    hasVehicle: string,
+    vehicle: {
+      model: string,
+      number: string,
+      capacity: string,
+    },
+  },
+  //handleChange()
+}
+
+class SignUpForm extends Component<RouteComponentProps,IState> {
   static contextType = UserContext;
 
-  constructor(props) {
+  constructor(props:RouteComponentProps) {
     super(props);
-    this.state = {
-      name: "",
-      mail: "",
-      password: "",
-      age: "",
-      number: "",
-      photo: "",
-      gender: "Female",
-      hasVehicle: "",
-      vehicle: {
-        model: "",
-        number: "",
-        capacity: "",
-      },
-      vehicleType: "",
-      showPassword: true,
-      formErrors: {
-        name: "",
-        mail: "",
-        password: "",
-        age: "",
-        number: "",
-        photo: "",
-        gender: "",
-        hasVehicle: "",
-        vehicle: {
-          model: "",
-          number: "",
-          capacity: "",
-        },
-        vehicleType: "",
-      },
-    };
     this.handleChange = this.handleChange.bind(this);
     this.handleVehicleChange = this.handleVehicleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -117,26 +123,29 @@ class SignUpForm extends Component {
     });
   }
 
-  handleMouseDownPassword(event) {
+  handleMouseDownPassword(event:any) {
     event.preventDefault();
   }
 
-  async handleSubmit(evt) {
+  async handleSubmit(evt:any) {
+    var x=this.props.history;
+    //this.props.history.push("/Home");
+    const { toggleAuth,setUser } = this.context!;
     evt.preventDefault();
     const data = new FormData();
     Object.keys(this.state).map((i) => data.append(i, this.state[i]));
     await axios.post("https://localhost:5001/api/UserApi/SignUp", data)
       .then(function (response) {
-        this.props.toogleAuth();
-        this.props.setUser(response.data);
-        this.props.history.push("/Home");
+        toggleAuth();
+        setUser(response.data);
+        x.push("/Home");
       })
       .catch(function () {
         alert("Error Loading Page");
       });
   }
 
-  handleVehicleChange(e) {
+  handleVehicleChange(e:any) {
     const { name, value } = e.target;
     let vehicle = { ...this.state.vehicle };
     let formErrors = { ...this.state.formErrors };
@@ -152,7 +161,7 @@ class SignUpForm extends Component {
       }
   }
 
-  handleChange(e) {
+  handleChange(e:any) {
     const { name, value } = e.target;
     let formErrors = { ...this.state.formErrors };
     if (value.length == 0) {
@@ -182,7 +191,7 @@ class SignUpForm extends Component {
     });
   }
 
-  handlefile(e) {
+  handlefile(e:any) {
     this.setState({
       [e.target.name]: e.target.files[0],
     });
@@ -288,7 +297,7 @@ class SignUpForm extends Component {
               value={this.state.password}
               onChange={this.handleChange}
               error={formErrors.password.length > 0}
-              helperText={formErrors.password}
+              //helperText={formErrors.password}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton

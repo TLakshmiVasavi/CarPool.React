@@ -1,34 +1,42 @@
 import React, { Component } from 'react'
 
-const UserContext = React.createContext()
-
-class UserProvider extends Component {
+type User=
+{
+  name: String,
+  mail: String,
+  number: String,
+  age: number,
+  gender: String,
+  photo: any,
+}
+type UserContext=
+{
+  signed: Boolean,
+  user?: User,
+   toggleAuth: () => void;
+   setUser:(value:User)=>void;
+}
+const UserContext = React.createContext<UserContext|undefined>(undefined);
+class UserProvider extends Component<{},UserContext> {
   // Context state
-  constructor(props) {
+  constructor(props:any) {
     super(props);
-    this.state = {
-      signed: true,
-      name: "vasavi",
-      user: {
-        name: 'Vasavi',
-        mail: '',
-        number: '',
-        age: '',
-        gender: '',
-        photo: ''
+    this.state={
+      signed:false,
+      toggleAuth:this.toggleAuth,
+      setUser:this.setUser
 
-      },
     }
     this.toggleAuth = this.toggleAuth.bind(this);
     this.setUser = this.setUser.bind(this);
   }
 
   toggleAuth() {
-    this.setState({ signed: !this.state.signed });
+    this.setState( {signed:!this.state.signed});
   }
 
   // Method to update state
-  setUser(user) {
+  setUser(user:any) {
     this.setState({ user })
   }
 
@@ -40,10 +48,11 @@ class UserProvider extends Component {
     return (
       <UserContext.Provider
         value={{
-          signed: this.state.signed,
+          //signed:this.state.signed,
+          signed:this.state.signed,
           user: this.state.user,
           toggleAuth: this.toggleAuth,
-          setUser: this.setUser,
+          setUser: this.setUser
         }}
       >
         {this.props.children}

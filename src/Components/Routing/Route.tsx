@@ -1,8 +1,13 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React, { Component } from "react";
+import { Route, Redirect,RouteProps } from "react-router-dom";
 import UserContext from "../UserContext";
 
-class RouteWrapper extends React.Component {
+interface IProps extends RouteProps
+{
+  isPrivate?:Boolean
+}
+
+class RouteWrapper extends React.Component<IProps> {
   static contextType = UserContext;
   render() {
     let { signed } = this.context;

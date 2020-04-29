@@ -4,7 +4,7 @@ import SignUpForm from './SignUpForm';
 import '../StyleSheets/LoginSignUp.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-class LoginSignUp extends Component {
+class LoginSignUp extends Component<{},{}> {
 
   render() {
     return (
